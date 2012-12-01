@@ -1,0 +1,62 @@
+\documentclass[a4paper,10pt,english]{article}% norsk istedefor english
+%\usepackage{ucs}
+%\usepackage[utf8x]{inputenc}%utf8x/ UiO utf-8
+\usepackage[latin1]{inputenc}%utf8x/ UiO utf-8
+\usepackage{babel}
+\usepackage{fontenc}%[T1]
+\usepackage{graphicx,subfigure,epsfig}%,uioforside},babel hvis norsk
+\usepackage{amssymb,psfrag,amsmath,wick,axodraw}
+%\usepackage[novbox]{pdfsync}
+
+\setlength{\parindent}{0in} %Ingen indent
+
+\include{mineshortcuts}
+
+\begin{document}
+\section{Introduction}
+Modern density functional theory developed from the Thomas-Fermi approach, where
+it was suggested that the energy can be written exclusively in terms of the 
+electronic density. It was not until Hohenberg and Kohn in 1964 proved a theorem
+for this relation between the energy and the electronic density that DFT became
+a widely used tool in many-body computations.
+
+\section{The Hohenberg-Kohn Theorem}
+The theorem states that the external potential is univocally determined by the 
+electron density, besides an additive constant.
+
+The proof is in two parts, first we may prove that the opposite holds, ie. the
+external potential is not univocally determined by the density. This means that
+there should exist two different external potential $v_1$ and $v_2,$ where
+$v_1\neq v_2 +cr,$ but there ground state density $\rho$ is the same. Let us
+then denote the Hamiltonians for the two different potentials $H_1=T+U^{ext}_1+V_{ee}$ and $H_2=T+U^{ext}_2+V_{ee}.$ Then we know that the ground state
+energy for $H_1$ is given by 
+\begin{equation*}
+        \begin{split}
+                &E_0=\braopket{\Phi^1_0}{H_1}{\Phi^1_{0}}<\braopket{\Phi^2_0}{H_1}{\Phi^2_0}=\\
+                &\braopket{\Phi^2}{H_2}{\Phi_2}+\braopket{\Phi_2}{H_1-H_2}{\Phi_2}\\
+                &=E_0'+\int\rho(r)(v_1-v_2)d^3r,
+        \end{split}
+\end{equation*}
+ and the ground state energy for $H_2$ is given by
+\begin{equation*}
+        \begin{split}
+                &E_0'=\braopket{\Phi^2}{H_2}{\Phi_2}<\braopket{\Phi^1_0}{H_1}{\Phi^1_{0}}+\braopket{\Phi_1}{H_2-H_1}{\Phi_1}\\
+                &=E_0+\int\rho(r)(v_2-v_1)d^3r
+        \end{split}
+        \label{sc1eq:1}
+\end{equation*}
+IF we now add the two ground state energies together we see a contradicting 
+statement
+\begin{equation*}
+       E_0+E-0'<E_0+E_0'.
+        \label{sqeq:contr}
+\end{equation*}
+Thus we see that one density cannot determine two different densities, differing
+by more thant an additive constant.
+
+
+
+
+
+
+\end{document}
