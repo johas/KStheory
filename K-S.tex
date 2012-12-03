@@ -45,23 +45,127 @@ energy for $H_1$ is given by
         \end{split}
         \label{sc1eq:1}
 \end{equation*}
-IF we now add the two ground state energies together we see a contradicting 
+If we now add the two ground state energies together we see a contradicting 
 statement
 \begin{equation*}
-       E_0+E-0'<E_0+E_0'.
+       E_0+E_0'<E_0+E_0'.
         \label{sqeq:contr}
 \end{equation*}
 Thus we see that one density cannot determine two different densities, differing
-by more thant an additive constant.\\
+by more than an additive constant.\\
 
-We note that since the density $\rho(r)$ univocally determines den external potential $v$, it also determines the ground state wave function $\Phi_0$.
+We note that since the density $\rho(r)$ univocally determines den external potential $v$, it also determines the ground state wave function $\Phi_0$.\\
 
-The second theorem of Hohenber-Kohn states that if $\tilde \rho(r)$ is a non-negative density and normalized to the number of particles $N$.
+The second theorem of Hohenberg-Kohn states that if $\tilde \rho(r)$ is a non-negative density and normalized to the number of particles $N$. Then the 
+variational energy $E_V[\rho]$ defined by
+\begin{equation}
+  E_V[\rho]=F[\rho]+\int\rho(r)v_{ext}(r)dr
+  \label{s1eq:energyv}
+\end{equation}
+with the functional 
+\begin{equation}
+  F[\rho]=\braopket{\Phi[\rho]}{T+U_{ee}}{\Phi[\rho]}.
+  \label{s1eq:Fu}
+\end{equation}
+If the wavefunction $\Phi[\rho]$ is the ground state of a potential with $\rho$ as its density, ie. if $E_0=E_V$ then 
+\begin{equation*}
+  E_0 < E_V[\tilde \rho].
+\end{equation*} 
+As a proof we see that the density $\rho$ fulfills the condition 
+\begin{equation}
+  \delta\big\{E_V[\rho]-\mu\big(\int\rho(r)dr-N\big)\big\}=0,
+  \label{s1eq:variationl}
+\end{equation}
+thus 
+\begin{equation}
+  \begin{split}
+	&\braopket{\Phi[\tilde \rho]}{H}{\Phi[\tilde \rho]}=F[\tilde \rho]+\int\tilde \rho(r)v_{ext}(r)dr\\
+	&=E_{V}[\tilde \rho]>E_V[\rho]=E_0=\braopket{\Phi[\rho]}{H}{\Phi[\rho]}.
+  \end{split}
+  \label{s1eq:proof2}
+\end{equation}
+We see that the knowledge of $F[\rho]$ implies the knowledge of the solution of
+the full many-body Schr\"odinger equation and that it is a universal functional
+which does not depend on the external potential $v_{ext}$.
+
+\section{Kohn-Sham equations}
+
+Kohn and Sham \cite{Kohn1965}  suggested to use a system of non-interacting electrons, 
+for which a Slater determinant can describe exactly, which gives the same
+electron density as the interacting system. Thus the kinetic energy term is described by 
+\begin{equation}
+  T=\sum_i^N \bra{\varphi_i}\frac{\nabla^2}{2}\ket{\varphi_i}.
+  \label{s2ksT}
+\end{equation}
+The kinetic energy operator will of course not give the exact kinetic energy of
+the interacting system, which follows from the observation that the wavefunction
+of the true problem is not described purely by a Slater determinant.\\
+
+We describe the Hamiltonian of the non-interacting system in the following way
+\begin{equation}
+  H_{KS}=\sum_{i}^N\big[-\frac{\nabla^2}{2}+v_{KS}\big],
+  \label{s2eq:Hks}
+\end{equation}
+where $N$ is the number of electrons. Because of the absence of 
+electron-electron interactions in the Hamiltonian, its eigenstates can be 
+expressed in the form of Slater determinants, with density
+\begin{equation}
+  \rho(r)=\sum_i^{N/2}2|\varphi_i(r)|^2,
+  \label{s2eq:KSdens}
+\end{equation}
+for a closed shell system. The single particle orbitals are the solution of the
+Kohn-Sham Hamiltionian
+\begin{equation}
+  H_{KS}\varphi_i=\frac{\nabla^2}{2}\varphi_i+v_{KS}\varphi_i=\varepsilon_i\varphi_i.
+  \label{s2eq:kseigfe}
+\end{equation}
+
+The Kohn-Sham funcional defined by
+\begin{equation}
+  %\begin{split}
+	E_{KS}=T_R[\rho]+\frac{1}{2}\int\frac{\rho(r)\rho(r')}{|r-r'|}drdr'+E_{XC}[\rho]+\int\rho(r)v_{ext}(r)dr,
+  %\end{split}
+  \label{s2eq:KSenergy}
+\end{equation}
+is used for the determination of the Kohn-Sham Hamiltonian in Eq.\eqref{s2eq:Hks}.
+To find the ground state density, the variational principle in Eq. \eqref{s1eq:variationl} is applied to Eq.\eqref{s2eq:KSenergy} which yields
+\begin{equation}
+  \frac{\delta T_R}{\delta \rho(r)}+v_{ext}(r)+\int\frac{\rho(r')}{|r-r'|}dr'+\frac{\delta E_{XC}[\rho(r)]}{\delta\rho(r)}=\mu.
+  \label{s2eq:varappl}
+\end{equation}
+By comparing this equation with the energy funcitonal for the non-interacting
+system, 
+\begin{equation}
+  E_{NI}[\rho]=T_R[\rho]+\int\rho(r)v_{KS}(r)dr,
+  \label{s2eq:noninterfunc}
+\end{equation}
+we may identify the the Kohn-Sham potential,$v_{KS}$ with
+\begin{equation}
+  v_{KS}=v_{ext}(r)+\int\frac{\rho(r')}{|r-r'|}dr'+v_{XC}[\rho]
+  \label{s2eq:vKS}
+\end{equation}
+with 
+\begin{equation}
+  v_{KS}=\frac{\delta E_{XC}[\rho]}{\delta \rho(r)}.
+  \label{s2eq:vXC}
+\end{equation}
+Thus our Schr\"odinger equation Eq.\eqref{s2eq:kseigfe} stated again
+\begin{equation*}
+  H_{KS}\varphi_i=\frac{\nabla^2}{2}\varphi_i+v_{KS}\varphi_i=\varepsilon_i\varphi_i.
+%  \label{s2eq:kseigfe}
+\end{equation*}
+has to be solved self consistently, since the Hamiltonian depends on the density in Eq. \eqref{s2eq:KSdens}. The total energy of the interacting system is given by
+\begin{equation}
+  E[\rho]=\sum_i^{N_s}\varepsilon_i-\frac{1}{2}\int\frac{\rho(r)\rho(')}{|r-r'|}drdr'+\int\rho(r)\big(\varepsilon_{XC}[\rho]-v_{XC}[\rho]\big).
+  \label{s2eq:totalenergy}
+\end{equation}
+Here $\varepsilon_{XC}$ is the exchange correlation energy density dealt with in a later section. The exchange correlation energy includes correlation from
+the kinetic energy as well as from the electron-electron interaction wihich the
+non-interacting system does not explain correctly, because of the fact that
+the wavefunction cannot be described accurately by a Slater determinant.
 
 
 
-
-
-
-
+\bibliographystyle{h-physrev3}
+\bibliography{DFT.bib}
 \end{document}
