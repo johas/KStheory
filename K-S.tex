@@ -20,6 +20,49 @@ electronic density. It was not until Hohenberg and Kohn in 1964 proved a theorem
 for this relation between the energy and the electronic density that DFT became
 a widely used tool in many-body computations.
 
+\section{Density and Correlation}
+The one-body density matrix in real space is defined by
+\begin{equation}
+  \rho_1(r,r')=\sum_{\sigma}\braopket{\Phi}{\hat\Psi_{\sigma}^\dagger(r)\hat\Psi_\sigma(r')}{\Phi}
+  \label{sdeq:onedens}
+\end{equation}
+where the operators $\hat\Psi^\dagger_{\sigma}$ and $\hat\Psi_{\sigma}$ are creation and
+annihilation operators respectively for electrons with spin $\sigma$. The 
+operators obey the anti-commutation relation
+\begin{equation}
+  \{\hat\Psi_{\sigma}(r),\Psi_{\sigma'}^\dagger(r')\}=\delta_{\sigma\sigma'}\delta(r-r').
+  \label{sdeq:anticumm}
+\end{equation}
+The two-body density matrix is expressed in a similar way in real space
+\begin{equation}
+  \rho_2(r,r')=\sum_{\sigma \sigma'}\braopket{\Phi}{\hat\Psi_{\sigma}^\dagger(r)\hat\Psi_{\sigma'}^\dagger(r')\hat\Psi_{\sigma'}(r')\hat\Psi_\sigma(r)}{\Phi}
+  \label{sdeq:twodens}
+\end{equation}
+
+\subsection{Pair correlation}
+The two-body density matrix can be expressed as 
+\begin{equation}
+  \rho_2(r,r')=\rho_1(r)\rho_1(r')g(r,r'),
+  \label{sseq:twodenscorr}
+\end{equation}
+where $g(r,r')$ is the pair correlation function, and gives the probability
+to find an electron at $r$ given that there is an electron at $r'$. The
+presence of an electron at $r'$ diminish the probability to find an electron
+at $r$ in the vicinity of $r'$ due to the repulsive coulomb interactions of the
+electrons. Thus the two-body density cannot be expressed solely as a 
+product of one body densities, which yields the electron correlations.
+The essence of the many body problem consists of finding an appropriate expression for the pair correlation function \cite{kohanoff2006}.\\
+
+The two-body density in Eq.\eqref{sseq:twodenscorr} is used in evaluation
+of expectation values of two-body operators, thus it is only in two-body effects
+such as the coulomb interactions among the electrons that the
+electron correlations has to be accounted for, disregarding the kinetic energy correlation of
+the Kohn-Sham equations due to the usage of the incorrect ground state wave function, treated in a later section.
+
+
+
+
+
 \section{The Hohenberg-Kohn Theorem}
 The theorem states that the external potential is univocally determined by the 
 electron density, besides an additive constant.
@@ -67,7 +110,7 @@ with the functional
   F[\rho]=\braopket{\Phi[\rho]}{T+U_{ee}}{\Phi[\rho]}.
   \label{s1eq:Fu}
 \end{equation}
-If the wavefunction $\Phi[\rho]$ is the ground state of a potential with $\rho$ as its density, ie. if $E_0=E_V$ then 
+If the wave function $\Phi[\rho]$ is the ground state of a potential with $\rho$ as its density, ie. if $E_0=E_V$ then 
 \begin{equation*}
   E_0 < E_V[\tilde \rho].
 \end{equation*} 
@@ -98,7 +141,7 @@ electron density as the interacting system. Thus the kinetic energy term is desc
   \label{s2ksT}
 \end{equation}
 The kinetic energy operator will of course not give the exact kinetic energy of
-the interacting system, which follows from the observation that the wavefunction
+the interacting system, which follows from the observation that the wave function
 of the true problem is not described purely by a Slater determinant.\\
 
 We describe the Hamiltonian of the non-interacting system in the following way
@@ -114,13 +157,13 @@ expressed in the form of Slater determinants, with density
   \label{s2eq:KSdens}
 \end{equation}
 for a closed shell system. The single particle orbitals are the solution of the
-Kohn-Sham Hamiltionian
+Kohn-Sham Hamiltonian
 \begin{equation}
   H_{KS}\varphi_i=\frac{\nabla^2}{2}\varphi_i+v_{KS}\varphi_i=\varepsilon_i\varphi_i.
   \label{s2eq:kseigfe}
 \end{equation}
 
-The Kohn-Sham funcional defined by
+The Kohn-Sham functional defined by
 \begin{equation}
   %\begin{split}
 	E_{KS}=T_R[\rho]+\frac{1}{2}\int\frac{\rho(r)\rho(r')}{|r-r'|}drdr'+E_{XC}[\rho]+\int\rho(r)v_{ext}(r)dr,
@@ -133,13 +176,13 @@ To find the ground state density, the variational principle in Eq. \eqref{s1eq:v
   \frac{\delta T_R}{\delta \rho(r)}+v_{ext}(r)+\int\frac{\rho(r')}{|r-r'|}dr'+\frac{\delta E_{XC}[\rho(r)]}{\delta\rho(r)}=\mu.
   \label{s2eq:varappl}
 \end{equation}
-By comparing this equation with the energy funcitonal for the non-interacting
+By comparing this equation with the energy functional for the non-interacting
 system, 
 \begin{equation}
   E_{NI}[\rho]=T_R[\rho]+\int\rho(r)v_{KS}(r)dr,
   \label{s2eq:noninterfunc}
 \end{equation}
-we may identify the the Kohn-Sham potential,$v_{KS}$ with
+we may identify the Kohn-Sham potential,$v_{KS}$ with
 \begin{equation}
   v_{KS}=v_{ext}(r)+\int\frac{\rho(r')}{|r-r'|}dr'+v_{XC}[\rho]
   \label{s2eq:vKS}
@@ -160,9 +203,9 @@ has to be solved self consistently, since the Hamiltonian depends on the density
   \label{s2eq:totalenergy}
 \end{equation}
 Here $\varepsilon_{XC}$ is the exchange correlation energy density dealt with in a later section. The exchange correlation energy includes correlation from
-the kinetic energy as well as from the electron-electron interaction wihich the
+the kinetic energy as well as from the electron-electron interaction which the
 non-interacting system does not explain correctly, because of the fact that
-the wavefunction cannot be described accurately by a Slater determinant.
+the wave function cannot be described accurately by a Slater determinant.
 
 
 
